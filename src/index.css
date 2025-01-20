@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ghost float animations with different patterns */
+@keyframes float-1 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(100px, -50px) rotate(10deg) scale(1.1);
+  }
+  50% {
+    transform: translate(0, -100px) rotate(-5deg) scale(0.95);
+  }
+  75% {
+    transform: translate(-100px, -50px) rotate(5deg) scale(1.05);
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(-120px, -40px) rotate(15deg);
+  }
+  50% {
+    transform: translate(0, -160px) rotate(0deg);
+  }
+  75% {
+    transform: translate(120px, -40px) rotate(-15deg);
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(-80px, -100px) rotate(15deg) scale(1.1);
+  }
+  66% {
+    transform: translate(80px, -50px) rotate(-15deg) scale(0.9);
+  }
+}
+
+@keyframes float-4 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  20% {
+    transform: translate(150px, -25px) rotate(15deg) scale(1.1);
+  }
+  40% {
+    transform: translate(75px, -200px) rotate(-10deg) scale(0.9);
+  }
+  60% {
+    transform: translate(-75px, -200px) rotate(5deg) scale(1.05);
+  }
+  80% {
+    transform: translate(-150px, -25px) rotate(-15deg) scale(0.95);
+  }
+}
+
+@keyframes float-5 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  20% {
+    transform: translate(-100px, -80px) rotate(10deg) scale(1.1);
+  }
+  40% {
+    transform: translate(100px, -160px) rotate(-5deg) scale(0.95);
+  }
+  60% {
+    transform: translate(-120px, -120px) rotate(-15deg) scale(1.05);
+  }
+  80% {
+    transform: translate(120px, -40px) rotate(5deg) scale(0.9);
+  }
+}
+
+@keyframes fade {
+  0%, 100% { opacity: calc(var(--base-opacity, 0.1) * 0.5); }
+  50% { opacity: calc(var(--base-opacity, 0.1) * 2); }
+}
+
+.float-1 {
+  animation: float-1 var(--duration, 15s) infinite ease-in-out;
+}
+
+.float-2 {
+  animation: float-2 var(--duration, 15s) infinite ease-in-out;
+}
+
+.float-3 {
+  animation: float-3 var(--duration, 15s) infinite ease-in-out;
+}
+
+.float-4 {
+  animation: float-4 var(--duration, 15s) infinite ease-in-out;
+}
+
+.float-5 {
+  animation: float-5 var(--duration, 15s) infinite ease-in-out;
+}
+
+.animate-fade-in-out {
+  animation: fade 8s infinite ease-in-out;
+}
+
+.glow {
+  box-shadow: 0 0 10px theme('colors.cyan.500'),
+              0 0 20px theme('colors.cyan.500/50');
+}
+
+.glow-text {
+  text-shadow: 0 0 10px theme('colors.cyan.500'),
+               0 0 20px theme('colors.cyan.500/30');
+}
+
+.hover\:glow-button:hover {
+  box-shadow: 0 0 15px theme('colors.cyan.500'),
+              0 0 30px theme('colors.cyan.500/30');
+}
