@@ -129,7 +129,7 @@ function App() {
           <h1 className="text-4xl font-bold mb-2 text-cyan-200 glow-text">
             GhostFM
           </h1>
-          <p className="text-cyan-400">Ethereal Tunes from the Other Side</p>
+          <p className="text-cyan-400">Hits from the afterlife</p>
         </div>
 
         <div className="max-w-2xl mx-auto backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-cyan-500/20 bg-slate-900/40 hover:bg-slate-900/50 transition-all duration-500">
