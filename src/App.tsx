@@ -36,11 +36,13 @@ function App() {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const togglePlay = () => {
-    if (audioRef.current) {
+    const audio = audioRef.current;
+
+    if (audio) {
       if (isPlaying) {
-        audioRef.current.pause();
+        audio.pause();
       } else {
-        audioRef.current.play();
+        audio.play();
       }
       setIsPlaying(!isPlaying);
     }
@@ -54,15 +56,20 @@ function App() {
   };
 
   const playNext = () => {
-    setCurrentTrack((prev) => (prev + 1) % playlist.length);
+    setProgress(0);
+    setCurrentTrack((prevTrack) => (prevTrack + 1) % playlist.length); // Use functional state update
   };
 
   const playPrevious = () => {
-    setCurrentTrack((prev) => (prev - 1 + playlist.length) % playlist.length);
+    setProgress(0);
+    setCurrentTrack(
+      (prevTrack) => (prevTrack - 1 + playlist.length) % playlist.length
+    ); // Ensure positive index
   };
 
   useEffect(() => {
     const audio = audioRef.current;
+
     if (!audio) return;
 
     const updateProgress = () => {
@@ -77,7 +84,24 @@ function App() {
     return () => {
       audio.removeEventListener("timeupdate", updateProgress);
     };
-  }, [currentTrack]);
+  }, []);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    // Reset progress
+    setProgress(0);
+
+    // Update the audio element's `src` to the new track
+    audio.src = playlist[currentTrack].url;
+
+    // Auto-play the new track if playback is active
+    if (isPlaying) {
+      audio.play();
+    }
+  }, [currentTrack, isPlaying]);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-cyan-900 to-slate-900 text-cyan-100 relative overflow-hidden">
