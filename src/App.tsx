@@ -132,7 +132,7 @@ function App() {
             <Ghost size={48} className="text-cyan-400 animate-pulse" />
           </div>
           <h1 className="text-4xl font-bold mb-2 text-cyan-200 glow-text">
-            Phantom Radio
+            GhostFM
           </h1>
           <p className="text-cyan-400">Ethereal Tunes from the Other Side</p>
         </div>
