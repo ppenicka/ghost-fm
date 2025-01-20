@@ -1,22 +1,32 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, Ghost } from 'lucide-react';
+import React, { useState, useRef, useEffect } from "react";
+import {
+  Play,
+  Pause,
+  SkipForward,
+  SkipBack,
+  Volume2,
+  VolumeX,
+  Ghost,
+} from "lucide-react";
 
 // Ghost animation configuration
 const GHOST_COUNT = 25;
-const GHOST_VARIANTS = ['float-1', 'float-2', 'float-3', 'float-4', 'float-5'];
+const GHOST_VARIANTS = ["float-1", "float-2", "float-3", "float-4", "float-5"];
 const GHOST_SIZES = [24, 32, 48, 64, 72];
 
 function GhostBackground() {
-  const [ghosts, setGhosts] = useState<Array<{
-    id: number;
-    left: number;
-    top: number;
-    size: number;
-    variant: string;
-    delay: number;
-    duration: number;
-    opacity: number;
-  }>>([]);
+  const [ghosts, setGhosts] = useState<
+    Array<{
+      id: number;
+      left: number;
+      top: number;
+      size: number;
+      variant: string;
+      delay: number;
+      duration: number;
+      opacity: number;
+    }>
+  >([]);
 
   useEffect(() => {
     const newGhosts = Array.from({ length: GHOST_COUNT }, (_, i) => ({
@@ -24,7 +34,8 @@ function GhostBackground() {
       left: Math.random() * 100,
       top: Math.random() * 100,
       size: GHOST_SIZES[Math.floor(Math.random() * GHOST_SIZES.length)],
-      variant: GHOST_VARIANTS[Math.floor(Math.random() * GHOST_VARIANTS.length)],
+      variant:
+        GHOST_VARIANTS[Math.floor(Math.random() * GHOST_VARIANTS.length)],
       delay: Math.random() * 8,
       duration: 12 + Math.random() * 18,
       opacity: 0.1 + Math.random() * 0.15,
@@ -45,12 +56,14 @@ function GhostBackground() {
             animationDuration: `${ghost.duration}s`,
           }}
         >
-          <Ghost 
-            size={ghost.size} 
+          <Ghost
+            size={ghost.size}
             className="text-cyan-200 animate-fade-in-out"
-            style={{
-              '--base-opacity': ghost.opacity,
-            } as React.CSSProperties}
+            style={
+              {
+                "--base-opacity": ghost.opacity,
+              } as React.CSSProperties
+            }
           />
         </div>
       ))}
@@ -64,15 +77,15 @@ const playlist = [
     id: 1,
     title: "Haunted Melodies",
     artist: "Spectral Sounds",
-    duration: "3:45",
-    url: "/path/to/audio1.mp3"
+    duration: "0:06",
+    url: "/sample-6s.mp3",
   },
   {
     id: 2,
     title: "Midnight Whispers",
     artist: "Ghost Orchestra",
-    duration: "4:20",
-    url: "/path/to/audio2.mp3"
+    duration: "0:12",
+    url: "/sample-12s.mp3",
   },
 ];
 
@@ -118,7 +131,9 @@ function App() {
           <div className="flex justify-center mb-4">
             <Ghost size={48} className="text-cyan-400 animate-pulse" />
           </div>
-          <h1 className="text-4xl font-bold mb-2 text-cyan-200 glow-text">Phantom Radio</h1>
+          <h1 className="text-4xl font-bold mb-2 text-cyan-200 glow-text">
+            Phantom Radio
+          </h1>
           <p className="text-cyan-400">Ethereal Tunes from the Other Side</p>
         </div>
 
@@ -126,10 +141,14 @@ function App() {
         <div className="max-w-2xl mx-auto backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-cyan-500/20 bg-slate-900/40 hover:bg-slate-900/50 transition-all duration-500">
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h2 className="text-2xl font-semibold mb-1 text-cyan-200">{playlist[currentTrack].title}</h2>
+              <h2 className="text-2xl font-semibold mb-1 text-cyan-200">
+                {playlist[currentTrack].title}
+              </h2>
               <p className="text-cyan-400">{playlist[currentTrack].artist}</p>
             </div>
-            <span className="text-cyan-400">{playlist[currentTrack].duration}</span>
+            <span className="text-cyan-400">
+              {playlist[currentTrack].duration}
+            </span>
           </div>
 
           {/* Progress Bar */}
@@ -139,50 +158,55 @@ function App() {
 
           {/* Controls */}
           <div className="flex items-center justify-center gap-6">
-            <button 
+            <button
               onClick={playPrevious}
               className="p-2 hover:bg-cyan-800/30 rounded-full transition-colors group"
             >
               <SkipBack size={24} className="group-hover:text-cyan-400" />
             </button>
-            
-            <button 
+
+            <button
               onClick={togglePlay}
               className="p-4 bg-cyan-600/20 hover:bg-cyan-600/40 rounded-full transition-all transform hover:scale-105 border border-cyan-400/20 hover:glow-button"
             >
               {isPlaying ? <Pause size={32} /> : <Play size={32} />}
             </button>
-            
-            <button 
+
+            <button
               onClick={playNext}
               className="p-2 hover:bg-cyan-800/30 rounded-full transition-colors group"
             >
               <SkipForward size={24} className="group-hover:text-cyan-400" />
             </button>
 
-            <button 
+            <button
               onClick={toggleMute}
               className="p-2 hover:bg-cyan-800/30 rounded-full transition-colors group ml-4"
             >
-              {isMuted ? 
-                <VolumeX size={24} className="group-hover:text-cyan-400" /> : 
+              {isMuted ? (
+                <VolumeX size={24} className="group-hover:text-cyan-400" />
+              ) : (
                 <Volume2 size={24} className="group-hover:text-cyan-400" />
-              }
+              )}
             </button>
           </div>
         </div>
 
         {/* Playlist */}
         <div className="max-w-2xl mx-auto mt-8">
-          <h3 className="text-xl font-semibold mb-4 text-cyan-200">Haunted Playlist</h3>
+          <h3 className="text-xl font-semibold mb-4 text-cyan-200">
+            Haunted Playlist
+          </h3>
           <div className="space-y-2">
             {playlist.map((track, index) => (
-              <div 
+              <div
                 key={track.id}
                 className={`flex items-center justify-between p-3 rounded-lg transition-all cursor-pointer backdrop-blur-sm
-                  ${currentTrack === index 
-                    ? 'bg-cyan-900/40 border border-cyan-500/50 shadow-lg shadow-cyan-500/20' 
-                    : 'hover:bg-cyan-800/20 border border-transparent hover:border-cyan-500/20'}`}
+                  ${
+                    currentTrack === index
+                      ? "bg-cyan-900/40 border border-cyan-500/50 shadow-lg shadow-cyan-500/20"
+                      : "hover:bg-cyan-800/20 border border-transparent hover:border-cyan-500/20"
+                  }`}
                 onClick={() => setCurrentTrack(index)}
               >
                 <div>
