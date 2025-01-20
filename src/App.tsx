@@ -13,34 +13,48 @@ import {
 const playlist = [
   {
     id: 0,
+    title: "Jingle Interlude",
+    artist: "DJ Afterlife",
+    duration: "0:15",
+    url: "/v4-standy-jingle-instrumental.mp3",
+  },
+  {
+    id: 1,
     title: "DJ Intro",
-    artist: "DJ Ghost",
+    artist: "DJ Afterlife",
     duration: "0:17",
     url: "/ElevenLabs_2025-01-20T09_21_25_Bill_pre_s50_sb75_se0_b_m2.mp3",
   },
   {
-    id: 1,
+    id: 2,
     title: "AI in Thailand",
     artist: "Neon Saffron",
     duration: "3:42",
     url: "/AI_in_Thailand.mp3",
   },
   {
-    id: 2,
+    id: 3,
     title: "Cyber Freedom",
     artist: "Echo Voltage",
     duration: "3:27",
     url: "/Cyber_Freedom.mp3",
   },
   {
-    id: 3,
+    id: 4,
     title: "Rise of the Machine Gods",
     artist: "Silicon Domination",
     duration: "4:00",
     url: "/Rise_of_the_Machine_Gods.mp3",
   },
   {
-    id: 4,
+    id: 5,
+    title: "ลาวดวงเดือน",
+    artist: "Whitney Pattaya",
+    duration: "6:00",
+    url: "/Whitney-ลาวดวงเดือน(Final).mp3",
+  },
+  {
+    id: 6,
     title: "The Real McCoy",
     artist: "Joy McCoy",
     duration: "2:22",
@@ -135,7 +149,7 @@ function App() {
           <h1 className="text-4xl font-bold mb-2 text-cyan-200 glow-text">
             GhostFM
           </h1>
-          <p className="text-cyan-400">Hits from the afterlife</p>
+          <p className="text-cyan-400">Hits from the Afterlife.</p>
         </div>
 
         <div className="max-w-2xl mx-auto backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-cyan-500/20 bg-slate-900/40 hover:bg-slate-900/50 transition-all duration-500">
