@@ -55,7 +55,7 @@ export function GhostBackground() {
         >
           <Ghost
             size={ghost.size}
-            className="text-cyan-200 animate-fade-in-out"
+            className="text-indigo-200 animate-fade-in-out"
             style={
               {
                 "--base-opacity": ghost.opacity,

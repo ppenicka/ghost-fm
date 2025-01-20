@@ -138,78 +138,92 @@ function App() {
   }, [currentTrack, isPlaying]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-cyan-900 to-slate-900 text-cyan-100 relative overflow-hidden">
-      <GhostBackground />
+    <div className="min-h-screen bg-black text-indigo-100 relative overflow-hidden">
+      <img
+        src="/background.jpeg"
+        alt="Background"
+        className="absolute inset-0 object-cover w-full h-1/2 z-0"
+      />
 
       <div className="container mx-auto px-4 py-8 relative z-10">
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <Ghost size={48} className="text-cyan-400 animate-pulse" />
+            <Ghost size={48} className="text-indigo-400 animate-pulse" />
           </div>
-          <h1 className="text-4xl font-bold mb-2 text-cyan-200 glow-text">
+          <h1 className="text-4xl font-bold mb-2 text-indigo-200 glow-text">
             GhostFM
           </h1>
-          <p className="text-cyan-400">Hits from the Afterlife.</p>
+          <p className="text-indigo-400">Hits from the Afterlife.</p>
         </div>
 
-        <div className="max-w-2xl mx-auto backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-cyan-500/20 bg-slate-900/40 hover:bg-slate-900/50 transition-all duration-500">
-          <div className="flex items-center justify-between mb-8">
+        <div className="max-w-2xl mx-auto backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-indigo-500/20 bg-slate-900/40 hover:bg-slate-900/50 transition-all duration-500">
+          <div className="flex flex-col items-center text-center mb-8">
             <div>
-              <h2 className="text-2xl font-semibold mb-1 text-cyan-200">
+              <h2 className="text-2xl font-semibold mb-1 text-indigo-200">
                 {playlist[currentTrack].title}
               </h2>
-              <p className="text-cyan-400">{playlist[currentTrack].artist}</p>
+              <p className="text-indigo-400">{playlist[currentTrack].artist}</p>
             </div>
-            <span className="text-cyan-400">
+            <span className="text-indigo-400">
               {playlist[currentTrack].duration}
             </span>
           </div>
 
           {/* Progress Bar */}
-          <div className="w-full h-1 bg-cyan-900/30 rounded-full mb-6">
+          <div className="w-full h-1 bg-indigo-900/30 rounded-full mb-6">
             <div
-              className="h-full bg-cyan-500 rounded-full glow"
+              className="h-full bg-indigo-500 rounded-full glow"
               style={{ width: `${progress}%` }} // Dynamic width
             ></div>
           </div>
 
           <div className="flex items-center justify-center gap-6">
-            <button
-              onClick={playPrevious}
-              className="p-2 hover:bg-cyan-800/30 rounded-full transition-colors group"
-            >
-              <SkipBack size={24} className="group-hover:text-cyan-400" />
-            </button>
+            <div className="flex items-center justify-center gap-6 w-1/4"></div>
 
-            <button
-              onClick={togglePlay}
-              className="p-4 bg-cyan-600/20 hover:bg-cyan-600/40 rounded-full transition-all transform hover:scale-105 border border-cyan-400/20 hover:glow-button"
-            >
-              {isPlaying ? <Pause size={32} /> : <Play size={32} />}
-            </button>
+            <div className="flex items-center justify-center gap-6 w-1/2">
+              <button
+                onClick={playPrevious}
+                className="p-2 hover:bg-indigo-800/30 rounded-full transition-colors group"
+              >
+                <SkipBack size={24} className="group-hover:text-indigo-400" />
+              </button>
+              <button
+                onClick={togglePlay}
+                className="p-4 bg-indigo-600/20 hover:bg-indigo-600/40 rounded-full transition-all transform hover:scale-105 border border-indigo-400/20 hover:glow-button"
+              >
+                {isPlaying ? <Pause size={32} /> : <Play size={32} />}
+              </button>
 
-            <button
-              onClick={playNext}
-              className="p-2 hover:bg-cyan-800/30 rounded-full transition-colors group"
-            >
-              <SkipForward size={24} className="group-hover:text-cyan-400" />
-            </button>
+              <button
+                onClick={playNext}
+                className="p-2 hover:bg-indigo-800/30 rounded-full transition-colors group"
+              >
+                <SkipForward
+                  size={24}
+                  className="group-hover:text-indigo-400"
+                />
+              </button>
+            </div>
 
-            <button
-              onClick={toggleMute}
-              className="p-2 hover:bg-cyan-800/30 rounded-full transition-colors group ml-4"
-            >
-              {isMuted ? (
-                <VolumeX size={24} className="group-hover:text-cyan-400" />
-              ) : (
-                <Volume2 size={24} className="group-hover:text-cyan-400" />
-              )}
-            </button>
+            <div className="flex items-end justify-end w-1/4">
+              <button
+                onClick={toggleMute}
+                className="p-2 hover:bg-indigo-800/30 rounded-full transition-colors group ml-4"
+              >
+                {isMuted ? (
+                  <VolumeX size={24} className="group-hover:text-indigo-400" />
+                ) : (
+                  <Volume2 size={24} className="group-hover:text-indigo-400" />
+                )}
+              </button>
+            </div>
           </div>
         </div>
 
+        <img src="/waves.gif" alt="GhostFM Logo" className="mx-auto mt-8" />
+
         <div className="max-w-2xl mx-auto mt-8">
-          <h3 className="text-xl font-semibold mb-4 text-cyan-200">
+          <h3 className="text-xl font-semibold mb-4 text-indigo-200">
             Haunted Playlist
           </h3>
           <div className="space-y-2">
@@ -219,16 +233,16 @@ function App() {
                 className={`flex items-center justify-between p-3 rounded-lg transition-all cursor-pointer backdrop-blur-sm
                   ${
                     currentTrack === index
-                      ? "bg-cyan-900/40 border border-cyan-500/50 shadow-lg shadow-cyan-500/20"
-                      : "hover:bg-cyan-800/20 border border-transparent hover:border-cyan-500/20"
+                      ? "bg-indigo-900/40 border border-indigo-500/50 shadow-lg shadow-indigo-500/20"
+                      : "hover:bg-indigo-800/20 border border-transparent hover:border-indigo-500/20"
                   }`}
                 onClick={() => setCurrentTrack(index)}
               >
                 <div>
-                  <p className="font-medium text-cyan-200">{track.title}</p>
-                  <p className="text-sm text-cyan-400">{track.artist}</p>
+                  <p className="font-medium text-indigo-200">{track.title}</p>
+                  <p className="text-sm text-indigo-400">{track.artist}</p>
                 </div>
-                <span className="text-cyan-400">{track.duration}</span>
+                <span className="text-indigo-400">{track.duration}</span>
               </div>
             ))}
           </div>
