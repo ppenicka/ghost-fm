@@ -14,17 +14,31 @@ import {
 const playlist = [
   {
     id: 1,
-    title: "Haunted Melodies",
-    artist: "Spectral Sounds",
-    duration: "0:06",
-    url: "/sample-6s.mp3",
+    title: "AI in Thailand",
+    artist: "Neon Saffron",
+    duration: "3:42",
+    url: "/AI_in_Thailand.mp3",
   },
   {
     id: 2,
-    title: "Midnight Whispers",
-    artist: "Ghost Orchestra",
-    duration: "0:12",
-    url: "/sample-12s.mp3",
+    title: "Cyber Freedom",
+    artist: "Echo Voltage",
+    duration: "3:27",
+    url: "/Cyber_Freedom.mp3",
+  },
+  {
+    id: 3,
+    title: "Rise of the Machine Gods",
+    artist: "Silicon Domination",
+    duration: "4:00",
+    url: "/Rise_of_the_Machine_Gods.mp3",
+  },
+  {
+    id: 4,
+    title: "The Real McCoy",
+    artist: "Joy McCoy",
+    duration: "2:22",
+    url: "/The_Real_McCoy.mp3",
   },
 ];
 
