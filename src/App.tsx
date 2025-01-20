@@ -93,6 +93,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [progress, setProgress] = useState(0); // Progress as a percentage
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const togglePlay = () => {
@@ -121,12 +122,29 @@ function App() {
     setCurrentTrack((prev) => (prev - 1 + playlist.length) % playlist.length);
   };
 
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    const updateProgress = () => {
+      if (audio.duration) {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        setProgress(progress);
+      }
+    };
+
+    audio.addEventListener("timeupdate", updateProgress);
+
+    return () => {
+      audio.removeEventListener("timeupdate", updateProgress);
+    };
+  }, [currentTrack]);
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-cyan-900 to-slate-900 text-cyan-100 relative overflow-hidden">
       <GhostBackground />
 
       <div className="container mx-auto px-4 py-8 relative z-10">
-        {/* Radio Station Header */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
             <Ghost size={48} className="text-cyan-400 animate-pulse" />
@@ -137,7 +155,6 @@ function App() {
           <p className="text-cyan-400">Ethereal Tunes from the Other Side</p>
         </div>
 
-        {/* Now Playing Section */}
         <div className="max-w-2xl mx-auto backdrop-blur-lg rounded-xl p-6 shadow-2xl border border-cyan-500/20 bg-slate-900/40 hover:bg-slate-900/50 transition-all duration-500">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -153,10 +170,12 @@ function App() {
 
           {/* Progress Bar */}
           <div className="w-full h-1 bg-cyan-900/30 rounded-full mb-6">
-            <div className="w-1/3 h-full bg-cyan-500 rounded-full glow"></div>
+            <div
+              className="h-full bg-cyan-500 rounded-full glow"
+              style={{ width: `${progress}%` }} // Dynamic width
+            ></div>
           </div>
 
-          {/* Controls */}
           <div className="flex items-center justify-center gap-6">
             <button
               onClick={playPrevious}
@@ -192,7 +211,6 @@ function App() {
           </div>
         </div>
 
-        {/* Playlist */}
         <div className="max-w-2xl mx-auto mt-8">
           <h3 className="text-xl font-semibold mb-4 text-cyan-200">
             Haunted Playlist
@@ -220,7 +238,6 @@ function App() {
         </div>
       </div>
 
-      {/* Audio Element */}
       <audio
         ref={audioRef}
         src={playlist[currentTrack].url}
