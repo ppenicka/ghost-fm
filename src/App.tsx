@@ -10,8 +10,14 @@ import {
   Ghost,
 } from "lucide-react";
 
-// Rest of the App component remains the same
 const playlist = [
+  {
+    id: 0,
+    title: "DJ Intro",
+    artist: "DJ Ghost",
+    duration: "0:17",
+    url: "/ElevenLabs_2025-01-20T09_21_25_Bill_pre_s50_sb75_se0_b_m2.mp3",
+  },
   {
     id: 1,
     title: "AI in Thailand",
